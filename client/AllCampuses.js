@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 export default class AllCampus extends Component{
-    renderAllCampuses(){
-        
+    constructor(props){
+        super(props)
     }
     render(){
         return(

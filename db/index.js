@@ -1,9 +1,9 @@
 const db= require('./db');
 const Campus= require('./Campuses');
 const Students = require('./Students');
+ 
 
-
-const campuses= [
+const campus= [
     { name: 'Hogwarts', imgURL: 'https://cdn.shopify.com/s/files/1/0751/4753/products/doyle24-timdoyle-hogwarts-detail.jpg?v=1542395878', numStudents: 0 },
     { name: 'Xavier School For Gifted Youngsters', imgURL: 'https://static.wikia.nocookie.net/xmenmovies/images/d/df/XMansionSale.jpg/revision/latest?cb=20200504084729', numStudents: 0},
     { name: 'South Park Elementary', imgURL: 'https://static.wikia.nocookie.net/southpark/images/1/15/Elementary-school-quarantine-cc.png/revision/latest?cb=20201007203912', numStudents: 0 }
@@ -32,7 +32,7 @@ const syncAndSeed=async()=>{
        await Students.sync({force: true})
 
        const [Hogwarts, XavierSchoolForGiftedYoungsters, SpringfieldElementary] = await Promise.all(
-        campuses.map(({ name, imgURL, numStudents }) => 
+        campus.map(({ name, imgURL, numStudents }) => 
         Campus.create({ name, imgURL, numStudents }))
     );
 
@@ -69,4 +69,12 @@ const syncAndSeed=async()=>{
     }
 }
 
-syncAndSeed()
+// syncAndSeed()
+
+module.exports= {
+    syncAndSeed,
+        Campus,
+        Students,
+        campus,
+        students
+}
