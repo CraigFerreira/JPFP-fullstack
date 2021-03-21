@@ -1,3 +1,12 @@
-.campus-info {
+/* .campus-info {
+  border: black solid 3px;
+} */
+
+.img {
+  height: 200px;
+  width: 200px;
+}
+
+.campus {
   border: black solid 3px;
 }

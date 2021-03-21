@@ -5,8 +5,8 @@ const Students = require('./Students');
 
 const campus= [
     { name: 'Hogwarts', imgURL: 'https://cdn.shopify.com/s/files/1/0751/4753/products/doyle24-timdoyle-hogwarts-detail.jpg?v=1542395878', numStudents: 0 },
-    { name: 'Xavier School For Gifted Youngsters', imgURL: 'https://static.wikia.nocookie.net/xmenmovies/images/d/df/XMansionSale.jpg/revision/latest?cb=20200504084729', numStudents: 0},
-    { name: 'South Park Elementary', imgURL: 'https://static.wikia.nocookie.net/southpark/images/1/15/Elementary-school-quarantine-cc.png/revision/latest?cb=20201007203912', numStudents: 0 }
+    { name: 'Xavier School For Gifted Youngsters', imgURL: 'http://2.bp.blogspot.com/-4dXfpVfu6uQ/TfTtWZoQwUI/AAAAAAAAALY/uh3nmrXEufU/s1600/HatleyCastle.jpg', numStudents: 0},
+    { name: 'South Park Elementary', imgURL: 'https://www.dafont.com/forum/attach/orig/5/0/504586.jpg', numStudents: 0 }
 ];
 
 const students= [

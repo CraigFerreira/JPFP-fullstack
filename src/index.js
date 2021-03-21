@@ -10,40 +10,37 @@ class App extends Component{
     constructor(props){
         super(props)
         this.state={
-            data: []
+            data:[]
         }
-        this.addCampusInfo=this.addCampusInfo.bind(this)
     }
     async componentDidMount(){
         const data= (await axios.get('api/data')).data
         console.log('client side data', data)
-        this.setState({
-            data
-        })
+        this.setState({data})
         console.log('state 1', this.state)
     }
 
-    addCampusInfo(){
-        return(
-            <div className='campus-info'>
-            {this.state.data.map((curr)=>{
-                return(
-                    <div className='campus-info-inner'>
-                        {curr.name}
-                        {/* <img className='campus-img' src={curr.imgURL} alt={curr.name}/> */}
-                    </div>
-                )
-            })}
-            </div>
-        )
-    }
+    // addCampusInfo(){
+    //     return(
+    //         <div className='campus-info'>
+    //         {this.state.data.map((curr)=>{
+    //             return(
+    //                 <div className='campus-info-inner'>
+    //                     {curr.name}
+    //                     {/* <img className='campus-img' src={curr.imgURL} alt={curr.name}/> */}
+    //                 </div>
+    //             )
+    //         })}
+    //         </div>
+    //     )
+    // }
 
     render(){
         return(
             <div>
                 <h1>Campus Listing</h1>
-                <AllCampus/>
-                {this.addCampusInfo()}
+                <AllCampus data={this.state.data}/>
+                {/* {this.addCampusInfo()} */}
             </div>
         )
     }
