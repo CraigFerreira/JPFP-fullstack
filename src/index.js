@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter} from 'react-router-dom'
+import {HashRouter, Switch, Route, NavLink} from 'react-router-dom'
 import AllCampus from '../client/AllCampuses.js'
+import AllStudents from '../client/AllStudents.js'
 import axios from 'axios'
 import './style.css'
 
@@ -20,32 +21,27 @@ class App extends Component{
         console.log('state 1', this.state)
     }
 
-    // addCampusInfo(){
-    //     return(
-    //         <div className='campus-info'>
-    //         {this.state.data.map((curr)=>{
-    //             return(
-    //                 <div className='campus-info-inner'>
-    //                     {curr.name}
-    //                     {/* <img className='campus-img' src={curr.imgURL} alt={curr.name}/> */}
-    //                 </div>
-    //             )
-    //         })}
-    //         </div>
-    //     )
-    // }
-
     render(){
         return(
-            <div>
-                <h1>Campus Listing</h1>
-                <AllCampus data={this.state.data}/>
-                {/* {this.addCampusInfo()} */}
-            </div>
+            <HashRouter>
+                <div>
+                    <nav>
+                        <NavLink to='/'>Home</NavLink>
+                        <NavLink to='Students'>Students</NavLink>
+                    </nav>
+                    <h1>Campus Listing</h1>
+                    <Switch>
+                        <Route exact path='/' render={()=><AllCampus data={this.state.data}/>} ></Route>
+                        <Route exact path='/Students' render={()=><AllStudents/>}></Route>
+                    </Switch>
+                    {/* <AllCampus data={this.state.data}/>
+                    <AllStudents/> */}
+                </div>
+            </HashRouter>
         )
     }
 }
 
 ReactDOM.render(
-<BrowserRouter><App/></BrowserRouter>, 
+<App/>, 
     document.getElementById('app'))
