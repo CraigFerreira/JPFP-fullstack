@@ -42,3 +42,12 @@ app.get('/api/students', async(req, res)=>{
         console.log(err)
     }
 })
+
+app.get('/api/campus/:id', async(req, res)=>{
+    try{
+        console.log(req.params.id)
+
+    }catch(err){
+        console.log(err)
+    }
+})
