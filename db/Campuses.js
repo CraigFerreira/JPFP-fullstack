@@ -13,6 +13,14 @@ const Campus= conn.define('Campus',{
     numStudents:{
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    address:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    description:{
+        type: DataTypes.TEXT,
+        allowNull: false
     }
 })
 

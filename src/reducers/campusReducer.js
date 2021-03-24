@@ -1,5 +1,5 @@
 export default(state=[], action)=>{
-    if(action.type==='FETCH_DATA'){
+    if(action.type==='FETCH_CAMPUS'){
         return action.payload
     }
     return state

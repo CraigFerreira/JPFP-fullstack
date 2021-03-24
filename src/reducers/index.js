@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux'
-import dataReducer from './dataReducer'
+import campusReducer from './campusReducer'
+import studentsReducer from './studentsReducer'
 
 export default combineReducers({
-    data: dataReducer
+    data: campusReducer,
+    students: studentsReducer
 })

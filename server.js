@@ -12,14 +12,13 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.get('/api/data', async(req, res)=>{
+app.get('/api/campus', async(req, res)=>{
     try{
         let data= await Campus.findAll({include:{model:Students}})
         console.log('campus data', data)
         res.send(data)
     }catch(err){
         console.log(err)
-        next(err)
     }
 })
 
@@ -33,24 +32,13 @@ const init= async()=>{
 init()
 
 
+app.get('/api/students', async(req, res)=>{
+    try{
+        const data= await Students.findAll({include: {model: Campus}})
+        console.log('students data', data)
+        res.send(data)
 
-// app.get('/api/data', async(req, res)=>{
-//     try{
-//         const authors=await Author.findAll({include: [{model: Book}]})
-//         console.log(authors)
-//         res.send(authors)
-//     }catch(err){
-//         console.log(err)
-//     }
-// })
-
-// app.delete('/api/authors/:id', async(req, res)=>{
-//     const {id}= req.params
-//     console.log('delete id', id)
-//   try{
-//     await Author.destroy({where:{id: id}})
-
-//   }catch(err){
-//       console.log(err)
-//   }
-// })
+    }catch(err){
+        console.log(err)
+    }
+})

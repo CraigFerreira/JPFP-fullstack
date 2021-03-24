@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../src/style.css'
 import {connect} from 'react-redux'
-import {fetchData} from '../src/actions'
+import {fetchCampusData} from '../src/actions'
 
 class AllCampus extends Component{
     constructor(props){
@@ -10,7 +10,7 @@ class AllCampus extends Component{
     }
     
     componentDidMount(){
-        this.props.fetchData()
+        this.props.fetchCampusData()
     }
 
     renderCampusData(){
@@ -23,7 +23,11 @@ class AllCampus extends Component{
                             <ul className='campus' key={curr.name}>
                                 <li>Campus Name: {curr.name}</li>
                                 <li>Number of Sudents: {curr.Students.length}</li>  
+                                <li>Address: {curr.address}</li>
                                 <img className='img' src={curr.imgURL}/>
+                                <li>
+                                    <p>{curr.description}</p>
+                                </li>
                             </ul>
                         )
                     })
@@ -51,4 +55,4 @@ const mapStateToProps= (state)=>{
 }
 
 
-export default connect(mapStateToProps, {fetchData})(AllCampus)
+export default connect(mapStateToProps, {fetchCampusData})(AllCampus)
