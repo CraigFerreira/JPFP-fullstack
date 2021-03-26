@@ -5,6 +5,7 @@ import {fetchCampusData} from '../src/actions'
 import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import SingleCampus from './SingleCampus'
+import AddCampus from './AddCampus'
 
 class AllCampus extends Component{
     constructor(props){
@@ -47,7 +48,7 @@ class AllCampus extends Component{
         return(
             <div>
                 <h1>All Campus</h1>
-                <button>Add Campus</button>
+                <AddCampus/>
                 <div className='campus-info'>
                     {this.renderCampusData()}
 

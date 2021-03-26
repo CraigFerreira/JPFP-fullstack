@@ -13,3 +13,9 @@ export const fetchStudentData=()=>{
         dispatch({type: 'FETCH_STUDENTS', payload: response.data})
     }
 }
+
+// export const addCampusData=()=>{
+//     return async(dispatch)=>{
+//         const 
+//     }
+// }
