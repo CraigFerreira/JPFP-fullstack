@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import '../src/style.css'
 import {connect} from 'react-redux'
 import {fetchCampusData} from '../src/actions'
+import axios from 'axios'
+import {NavLink} from 'react-router-dom'
+import SingleCampus from './SingleCampus'
 
 class AllCampus extends Component{
     constructor(props){
@@ -13,6 +16,7 @@ class AllCampus extends Component{
         this.props.fetchCampusData()
     }
 
+
     renderCampusData(){
         console.log('campus data',this.props)
         return(
@@ -20,6 +24,7 @@ class AllCampus extends Component{
                { 
                     this.props.campus.map((curr)=>{
                         return (
+                            <div key={curr.name}>
                             <ul className='campus' key={curr.name}>
                                 <li>Campus Name: {curr.name}</li>
                                 <li>Number of Sudents: {curr.Students.length}</li>  
@@ -28,7 +33,9 @@ class AllCampus extends Component{
                                 <li>
                                     <p>{curr.description}</p>
                                 </li>
+                                <NavLink to={`/SingleCampus/${curr.id}`}>Campus Info</NavLink>
                             </ul>
+                            </div>
                         )
                     })
                 }

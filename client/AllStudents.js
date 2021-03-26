@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../src/style.css'
 import {connect} from 'react-redux'
 import {fetchStudentData} from '../src/actions'
+import {NavLink} from 'react-router-dom'
 
 
 class AllStudents extends Component{
@@ -22,13 +23,16 @@ class AllStudents extends Component{
                { 
                     this.props.students.map((curr)=>{
                         return (
-                            <ul className='campus' key={curr.name}>
-                                <li>First Name: {curr.firstName}</li>
+                            <ul className='campus' key={curr.firstName +curr.lastName}>
+                                <li >First Name: {curr.firstName}</li>
                                 <li> Last Name: {curr.lastName}</li>
                                 <li>Email: <a href={curr.email}>{curr.email}</a></li>
                                 <li>GPA: {curr.gpa}</li>
                                 {/* <li>Campus Name: {curr.Students.length}</li>   */}
-                                <img className='img' src={curr.imgURL}/>
+                                <img key={curr.name} className='img' src={curr.imgURL}/>
+                                <li>
+                                <NavLink to={`/SingleStudent/${curr.id}`}>Student Info</NavLink>
+                                </li>
                             </ul>
                         )
                     })

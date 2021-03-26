@@ -2,7 +2,7 @@ const {syncAndSeed, Campus, Students, campus, students} = require('./db/index.js
 const express= require('express');
 const app= express()
 const port = process.env.PORT || 3000
-const path= require('path')
+const path= require('path');
 
 app.get('/', (req, res, next)=>{res.sendFile(path.join(__dirname, 'client/index.html'))})
 app.get('/', (req, res, next)=>{res.sendFile(path.join(__dirname, 'client/style.css'))})
@@ -43,10 +43,23 @@ app.get('/api/students', async(req, res)=>{
     }
 })
 
-app.get('/api/campus/:id', async(req, res)=>{
+app.get('/api/SingleCampus/:id', async(req, res)=>{
     try{
         console.log(req.params.id)
+        // const singleCampus = await Campus.findByPk(req.params.id)
+        const singleCampus= await Campus.findAll({where: {id: req.params.id}, include:{model: Students}})
+        res.send(singleCampus)
 
+    }catch(err){
+        console.log(err)
+    }
+})
+
+
+app.get('/api/SingleStudent/:id', async(req, res)=>{
+    try{
+        const singleStudent = await Students.findAll({where: {id: req.params.id}, include:{model: Campus}})
+        res.send(singleStudent)
     }catch(err){
         console.log(err)
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import {HashRouter, Switch, Route, NavLink} from 'react-router-dom'
+import {HashRouter, BrowserRouter, Switch, Route, NavLink, useHistory} from 'react-router-dom'
 import axios from 'axios'
 import './style.css'
 import {Provider} from 'react-redux'
@@ -8,11 +8,14 @@ import {createStore, applyMiddleware} from 'redux'
 import reducers from './reducers'
 import AllCampus from '../client/AllCampuses'
 import AllStudents from '../client/AllStudents'
+import SingleCampus from '../client/SingleCampus'
+import SingleStudent from '../client/SingleStudent'
 import thunk from 'redux-thunk'
 
 
 class App extends Component{
     render(){
+        console.log('main',this.props)
         return(
             <HashRouter>
                 <div>
@@ -20,10 +23,11 @@ class App extends Component{
                         <NavLink to='/'>Home</NavLink>
                         <NavLink to='/Students'>Students</NavLink>
                     </nav>
-                    <h1>Campus Listing</h1>
                     <Switch>
-                        <Route exact path='/' render={()=><AllCampus/>}></Route>
-                        <Route exact path='/Students' render={()=><AllStudents/>}></Route>
+                        <Route exact path='/' component={()=><AllCampus/>}></Route>
+                        <Route exact path='/Students' component={()=><AllStudents/>}></Route>
+                        <Route exact path='/SingleCampus/:campusId' component={SingleCampus}></Route>
+                        <Route exact path='/SingleStudent/:studentId' component={SingleStudent}></Route>
                     </Switch>
                 </div>
             </HashRouter>
