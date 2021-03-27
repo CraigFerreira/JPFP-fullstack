@@ -9,7 +9,7 @@ class AddCampus extends Component{
         super()
         this.state={
             campusName: '',
-            campusAdress: ''
+            campusAddress: ''
         }
         this.updateState= this.updateState.bind(this)
         this.updateCampusData= this.updateCampusData.bind(this)
@@ -27,24 +27,21 @@ class AddCampus extends Component{
         this.props.createNewCampus(this.state)
         this.setState({
             campusName:'',
-            campusAdress: ''
+            campusAddress: ''
         })
-    }
-    clearFields(){
-        value=''
     }
 
     render(){
         console.log('propsprops',this.props)
         return(
             <div>
-                <form className='form' >
+                <form className='form' onSubmit={this.updateCampusData}>
                     <h3>Add Campus</h3>
                     <label>Campus Name</label>
                     <input name='campusName' value={this.state.campusName} onChange={this.updateState} type='text'></input>
                     <label>Campus Address</label>
-                    <input name='campusAddress' value={this.state.campusAdress} onChange={this.updateState} type='text'></input>
-                    <button onClick={()=>{this.updateCampusData}}>Add New Campus!</button>
+                    <input name='campusAddress' value={this.state.campusAddress} onChange={this.updateState} type='text'></input>
+                    <button>Add New Campus!</button>
                 </form>
             </div>
         )

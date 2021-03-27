@@ -45,9 +45,10 @@ export default class SingleStudent extends Component{
                     <li>Email: <a href={this.state.email}>{this.state.email}</a></li>
                     <li>GPA: {this.state.gpa}</li>
                     {/* <li>Campus Name: {curr.Students.length}</li>   */}
-                    <img key={this.state.name} className='img' src={this.state.imgURL}/>
-                    <h3>Student {this.state.firstName} {this.state.lastName} studys at {this.state.Campus.name}</h3>
-                    <NavLink to={`/SingleCampus/${this.state.Campus.id}`}>{this.state.Campus.name}</NavLink>
+                    <img key={this.state.firstName +this.state.lastName} className='img' src={this.state.imgURL}/>
+                    {console.log(this.state.Campus)}
+                     {this.state.Campus===null? '':<h3>Student {this.state.firstName} {this.state.lastName} studys at{this.state.Campus.name}</h3>}
+                    {this.state.Campus===null?'':<NavLink to={`/SingleCampus/${this.state.Campus.id}`}>{this.state.Campus.name}</NavLink>} 
                 </ul>
 
             </div>

@@ -1,8 +1,10 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import '../src/style.css'
+import {addStudentData} from '../src/actions/index.js'
+import { connect } from 'react-redux'
 
-export default class AddStudent extends Component{
+class AddStudent extends Component{
     constructor(){
         super()
         this.state={
@@ -22,7 +24,13 @@ export default class AddStudent extends Component{
 
     async updateStudentData(event){
         event.preventDefault()
-        await axios.post('/students', this.state)
+        // await axios.post('/students', this.state)
+        this.props.createNewStudent(this.state)
+        this.setState({
+            firstName: '',
+            lastName: '',
+            email: ''
+        })
     }
 
     render(){
@@ -31,14 +39,24 @@ export default class AddStudent extends Component{
                 <form className='form' onSubmit={this.updateStudentData}>
                     <h3>Add Student</h3>
                     <label>Student First Name</label>
-                    <input name='firstName' onChange={this.updateState} type='text'></input>
+                    <input name='firstName' value={this.state.firstName} onChange={this.updateState} type='text'></input>
                     <label>Student Last Name</label>
-                    <input name='lastName' onChange={this.updateState} type='text'></input>
+                    <input name='lastName' value={this.state.lastName} onChange={this.updateState} type='text'></input>
                     <label>Student Email Address</label>
-                    <input name='email' onChange={this.updateState} type='text'></input>
+                    <input name='email' value={this.state.email} onChange={this.updateState} type='text'></input>
                     <button>Add New Student!</button>
                 </form>
             </div>
         )
     }
 }
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        createNewStudent: (formData)=>{
+            dispatch(addStudentData(formData))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddStudent)
