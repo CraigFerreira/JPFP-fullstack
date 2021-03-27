@@ -1,7 +1,10 @@
+import axios from 'axios'
 import React, { Component } from 'react'
 import '../src/style.css'
+import {connect} from 'react-redux'
+import {addCampusData} from '../src/actions/'
 
-export default class AddCampus extends Component{
+class AddCampus extends Component{
     constructor(){
         super()
         this.state={
@@ -9,6 +12,7 @@ export default class AddCampus extends Component{
             campusAdress: ''
         }
         this.updateState= this.updateState.bind(this)
+        this.updateCampusData= this.updateCampusData.bind(this)
     }
     updateState(event){
         this.setState({
@@ -17,23 +21,42 @@ export default class AddCampus extends Component{
         console.log(this.state)
     }
 
-    updateCampusData(event){
+    async updateCampusData(event){
         event.preventDefault()
-        
+        // await axios.post('/campus', this.state)
+        this.props.createNewCampus(this.state)
+        this.setState({
+            campusName:'',
+            campusAdress: ''
+        })
+    }
+    clearFields(){
+        value=''
     }
 
     render(){
+        console.log('propsprops',this.props)
         return(
             <div>
-                <form className='form'>
+                <form className='form' >
                     <h3>Add Campus</h3>
                     <label>Campus Name</label>
-                    <input name='campusName' onChange={this.updateState} type='text'></input>
+                    <input name='campusName' value={this.state.campusName} onChange={this.updateState} type='text'></input>
                     <label>Campus Address</label>
-                    <input name='campusAdress' onChange={this.updateState} type='text'></input>
-                    <button>Add New Campus!</button>
+                    <input name='campusAddress' value={this.state.campusAdress} onChange={this.updateState} type='text'></input>
+                    <button onClick={()=>{this.updateCampusData}}>Add New Campus!</button>
                 </form>
             </div>
         )
     }
 }
+
+const mapDispatchToProps=(dispatch)=>{
+ return {
+     createNewCampus: (formData)=>{
+         dispatch(addCampusData(formData))
+     }
+ }
+}
+
+export default connect(null , mapDispatchToProps)(AddCampus)

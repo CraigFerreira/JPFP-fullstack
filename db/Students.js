@@ -4,22 +4,27 @@ const conn= require('./db')
 const Students= conn.define('Students',{
     firstName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: ''
     },
     lastName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: ''
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: ''
     },
     imgURL:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: ''
     },
     gpa:{
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        defaultValue: 0
     }
 })
 

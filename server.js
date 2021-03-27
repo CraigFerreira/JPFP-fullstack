@@ -64,3 +64,33 @@ app.get('/api/SingleStudent/:id', async(req, res)=>{
         console.log(err)
     }
 })
+
+app.post('/api/campus', async(req, res)=>{
+    try{
+        console.log('add campus state', req.body)
+        const newCampus=await Campus.create({
+            name: req.body.campusName,
+            address: req.body.campusAddress,
+            // imgURL: '',
+            // numStudents: 0,
+            // description: ''
+        })
+        res.status(201).send(newCampus)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+app.post('/api/students', async(req, res)=>{
+    try{
+        console.log('add student state', req.body)
+        const newStudent=await Students.create({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email
+        })
+        res.status(201).send(newStudent)
+    }catch(err){
+        console.log(err)
+    }
+})

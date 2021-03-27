@@ -28,7 +28,8 @@ class AllCampus extends Component{
                             <div key={curr.name}>
                             <ul className='campus' key={curr.name}>
                                 <li>Campus Name: {curr.name}</li>
-                                <li>Number of Sudents: {curr.Students.length}</li>  
+                                {curr.Students===undefined?<li>Number of Sudents: 0</li> :<li>Number of Sudents: {curr.Students.length}</li>  } 
+                                {console.log('curr student length',curr.Students)}
                                 <li>Address: {curr.address}</li>
                                 <img className='img' src={curr.imgURL}/>
                                 <li>

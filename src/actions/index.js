@@ -14,8 +14,9 @@ export const fetchStudentData=()=>{
     }
 }
 
-// export const addCampusData=()=>{
-//     return async(dispatch)=>{
-//         const 
-//     }
-// }
+export const addCampusData=(formInput)=>{
+    return async(dispatch)=>{
+        const response= await data.post('/campus', formInput)
+        dispatch({type: 'CREATE_NEW_CAMPUS', payload: response.data})
+    }
+}

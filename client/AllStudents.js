@@ -3,6 +3,7 @@ import '../src/style.css'
 import {connect} from 'react-redux'
 import {fetchStudentData} from '../src/actions'
 import {NavLink} from 'react-router-dom'
+import AddStudent from './AddStudent'
 
 
 class AllStudents extends Component{
@@ -45,7 +46,7 @@ class AllStudents extends Component{
         return(
             <div>
                 <h1>All Students</h1>
-                <button>Add Student</button>
+                <AddStudent/>
                 <div className='campus-info'>
                     {this.renderStudentData()}
 
