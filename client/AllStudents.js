@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchStudentData} from '../src/actions'
 import {NavLink} from 'react-router-dom'
 import AddStudent from './AddStudent'
+import DeleteStudent from './DeleteStudent'
 
 
 class AllStudents extends Component{
@@ -29,7 +30,7 @@ class AllStudents extends Component{
                                 <li> Last Name: {curr.lastName}</li>
                                 <li>Email: <a href={curr.email}>{curr.email}</a></li>
                                 <li>GPA: {curr.gpa}</li>
-                                {/* <li>Campus Name: {curr.Students.length}</li>   */}
+                                <DeleteStudent props={curr}/>
                                 <img key={curr.name} className='img' src={curr.imgURL}/>
                                 <li>
                                 <NavLink to={`/SingleStudent/${curr.id}`}>Student Info</NavLink>

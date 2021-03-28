@@ -96,9 +96,21 @@ app.post('/api/students', async(req, res)=>{
 app.delete('/api/campus/:id', async(req, res)=>{
     try{
         console.log('server delete campus', req.params.id)
-        Campus.destroy({where:{id: req.params.id}})
-        const updatedCampus= Campus.findAll()
+        await Campus.destroy({where:{id: req.params.id}})
+        const updatedCampus= await Campus.findAll()
         res.send(updatedCampus)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+app.delete('/api/students/:id', async(req, res)=>{
+    try{
+        console.log('server delete student', req.params.id)
+        await Students.destroy({where:{id: req.params.id}})
+        const updatedStudents= await Students.findAll()
+        res.send(updatedStudents)
+
     }catch(err){
         console.log(err)
     }

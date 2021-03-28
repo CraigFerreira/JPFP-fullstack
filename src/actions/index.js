@@ -34,3 +34,10 @@ export const deleteCampusData=(id)=>{
         dispatch({type: 'DELETE_CAMPUS', payload: id})
     }
 }
+
+export const deleteStudentData= (id)=>{
+    return async(dispatch)=>{
+        const response= await data.delete(`/students/${id}`)
+        dispatch({type: 'DELETE_STUDENT', payload: id})
+    }
+}
