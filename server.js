@@ -71,9 +71,6 @@ app.post('/api/campus', async(req, res)=>{
         const newCampus=await Campus.create({
             name: req.body.campusName,
             address: req.body.campusAddress,
-            // imgURL: '',
-            // numStudents: 0,
-            // description: ''
         })
         res.status(201).send(newCampus)
     }catch(err){
@@ -89,7 +86,19 @@ app.post('/api/students', async(req, res)=>{
             lastName: req.body.lastName,
             email: req.body.email
         })
+        
         res.status(201).send(newStudent)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+app.delete('/api/campus/:id', async(req, res)=>{
+    try{
+        console.log('server delete campus', req.params.id)
+        Campus.destroy({where:{id: req.params.id}})
+        const updatedCampus= Campus.findAll()
+        res.send(updatedCampus)
     }catch(err){
         console.log(err)
     }

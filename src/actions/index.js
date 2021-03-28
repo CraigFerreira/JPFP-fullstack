@@ -27,3 +27,10 @@ export const addStudentData=(formInput)=>{
         dispatch({type: 'CREATE_NEW_STUDENT', payload: response.data})
     }
 }
+
+export const deleteCampusData=(id)=>{
+    return async(dispatch)=>{
+        const response= await data.delete(`/campus/${id}`)
+        dispatch({type: 'DELETE_CAMPUS', payload: id})
+    }
+}

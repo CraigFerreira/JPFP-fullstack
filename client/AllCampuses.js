@@ -6,6 +6,7 @@ import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import SingleCampus from './SingleCampus'
 import AddCampus from './AddCampus'
+import DeleteCampus from './DeleteCampus'
 
 class AllCampus extends Component{
     constructor(props){
@@ -15,8 +16,7 @@ class AllCampus extends Component{
     
     componentDidMount(){
         this.props.fetchCampusData()
-    }
-
+    }  
 
     renderCampusData(){
         console.log('campus data',this.props)
@@ -31,6 +31,7 @@ class AllCampus extends Component{
                                 {curr.Students===undefined?<li>Number of Sudents: 0</li> :<li>Number of Sudents: {curr.Students.length}</li>  } 
                                 {console.log('curr student length',curr.Students)}
                                 <li>Address: {curr.address}</li>
+                                 <DeleteCampus props={curr}/>
                                 <img className='img' src={curr.imgURL}/>
                                 <li>
                                     <p>{curr.description}</p>
