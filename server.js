@@ -115,3 +115,15 @@ app.delete('/api/students/:id', async(req, res)=>{
         console.log(err)
     }
 })
+
+app.put('/api/campus/:id', async(req, res)=>{
+    try{
+        console.log('campus id of campus to update', typeof req.params.id)
+        console.log('campus data to change to', req.body)
+        const updateCurrCampus=await Campus.update({name: req.body.state.campusName, address: req.body.state.campusAddress},{where:{id: req.params.id}})
+        const newCampusList= await Campus.findAll()
+        res.send(newCampusList)
+    }catch(err){
+        console.log(err)
+    }
+})

@@ -41,3 +41,10 @@ export const deleteStudentData= (id)=>{
         dispatch({type: 'DELETE_STUDENT', payload: id})
     }
 }
+
+export const UpdateCampusData=(currdata)=>{
+    return async(dispatch)=>{
+        const response= await data.put(`/campus/${currdata.id}`, currdata)
+        dispatch({type: 'UPDATE_STUDENT', payload: response.data})
+    }
+}

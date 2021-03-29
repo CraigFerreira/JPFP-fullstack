@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchCampusData} from '../src/actions'
 import axios from 'axios'
 import {NavLink} from 'react-router-dom'
+import UpdateCampus from './UpdateCampus'
 
 export default class SingleCampus extends Component{
     constructor(props){
@@ -29,6 +30,7 @@ export default class SingleCampus extends Component{
     renderCampus(){
         return(
             <div>
+                <UpdateCampus currCampus={this.state}/>
                 <ul>
                     <li>
                         Campus Name: {this.state.SingleCampus.name}

@@ -14,6 +14,15 @@ export default(state=[], action)=>{
         })
         return [...filteredCampus]
     }
+    else if(action.type==='UPDATE_CAMPUS'){
+        console.log('update campus data', action.payload)
+        let updatedCampus= state.map((currCampus)=>{
+            if(currCampus.id===action.payload.id){
+                return action.payload
+            }
+        })
+        return updatedCampus
+    }
 
     return state
 }
