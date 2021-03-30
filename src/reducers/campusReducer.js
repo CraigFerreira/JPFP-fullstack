@@ -23,6 +23,9 @@ export default(state=[], action)=>{
         })
         return updatedCampus
     }
+    else if(action.type==='GET_SINGLE_CAMPUS'){
+        return action.payload
+    }
 
     return state
 }

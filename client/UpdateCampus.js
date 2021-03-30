@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {UpdateCampusData} from '../src/actions/index'
+import {getSingleCampusData} from '../src/actions'
 
 class UpdateCampus extends Component{
     constructor(){
@@ -22,11 +23,17 @@ class UpdateCampus extends Component{
     updateCurrentCampus(event){
         event.preventDefault()
         // console.log('update campus data to',this.state, 'id', this.props.currCampus.SingleCampus.id)
-        const currId= this.props.currCampus.SingleCampus.id
-        console.log('update campus data to',this.state, 'id', currId)
-        const data= {state: this.state, id: currId}
-        console.log(data)
+        // console.log('props props', this.props)
+        // console.log('curr campus props', this.props.currCampus.campus[0].id)
+        const currId= this.props.currCampus.campus[0].id
+        console.log('curr curr id', currId)
+        // console.log('update campus data to',this.state, 'id', currId)
+        const currState= this.state
+        const data= {currState, id: currId}
+        console.log('data', data)
+        console.log('updated campus state to',this.state)
         this.props.updateCampus(data)
+        this.props.updateState()
         this.setState({
             campusName:'',
             campusAddress:''

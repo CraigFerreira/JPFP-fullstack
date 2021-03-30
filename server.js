@@ -48,6 +48,7 @@ app.get('/api/SingleCampus/:id', async(req, res)=>{
         console.log(req.params.id)
         // const singleCampus = await Campus.findByPk(req.params.id)
         const singleCampus= await Campus.findAll({where: {id: req.params.id}, include:{model: Students}})
+        console.log('single single',singleCampus)
         res.send(singleCampus)
 
     }catch(err){
@@ -118,9 +119,9 @@ app.delete('/api/students/:id', async(req, res)=>{
 
 app.put('/api/campus/:id', async(req, res)=>{
     try{
-        console.log('campus id of campus to update', typeof req.params.id)
+        console.log('campus id of campus to update', req.params.id)
         console.log('campus data to change to', req.body)
-        const updateCurrCampus=await Campus.update({name: req.body.state.campusName, address: req.body.state.campusAddress},{where:{id: req.params.id}})
+        const updateCurrCampus=await Campus.update({name: req.body.campusName, address: req.body.campusAddress},{where:{id: req.params.id}})
         const newCampusList= await Campus.findAll()
         res.send(newCampusList)
     }catch(err){

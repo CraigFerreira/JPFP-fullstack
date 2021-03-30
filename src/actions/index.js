@@ -44,7 +44,14 @@ export const deleteStudentData= (id)=>{
 
 export const UpdateCampusData=(currdata)=>{
     return async(dispatch)=>{
-        const response= await data.put(`/campus/${currdata.id}`, currdata)
+        const response= await data.put(`/campus/${currdata.id}`, currdata.currState)
         dispatch({type: 'UPDATE_STUDENT', payload: response.data})
+    }
+}
+
+export const getSingleCampusData= (id)=>{
+    return async(dispatch)=>{
+        const response= await data.get(`/SingleCampus/${id}`)
+        dispatch({type: 'GET_SINGLE_CAMPUS', payload: response.data})
     }
 }
