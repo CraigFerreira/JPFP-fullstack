@@ -2,18 +2,24 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {getSingleStudentData} from '../src/actions/index'
 import {NavLink} from 'react-router-dom'
+import UpdateStudent from './UpdateStudent'
 import '../src/style.css'
 
 class SingleStudent extends Component{
     constructor(props){
         super(props)
         this.renderStudent= this.renderStudent.bind(this)
+        this.updateStudent= this.updateStudent.bind(this)
     }
     componentDidMount(){
         const id= this.props.match.params.studentId
         this.props.getSingleStudentData(id)
 
     }
+    updateStudent(){
+        this.props.getSingleStudentData(this.props.match.params.studentId)
+    }
+
     renderStudent(){
         return(
             <div>
@@ -40,6 +46,7 @@ class SingleStudent extends Component{
         return(
             <div>
                 <h3>Single Student</h3>
+                <UpdateStudent updateCurrStudent={this.updateStudent} singleStudentProps={this.props}/>
                 {this.renderStudent()}
             </div>
         )

@@ -58,7 +58,8 @@ export const getSingleCampusData= (id)=>{
 
 export const UpdateStudentData=(currdata)=>{
     return async(dispatch)=>{
-        const response= await data.put(`/student/${currdata.id}`, currdata.currState)
+        // console.log('update student action creator', currdata)
+        const response= await data.put(`/students/${currdata.id}`, currdata.currState)
         // dispatch({type: 'UPDATE_CAMPUS', payload: response.data})
     }
 }
