@@ -18,7 +18,6 @@ class updateStudent extends Component{
         this.setState({
             [event.target.name]: event.target.value
         })
-        console.log(this.state)
     }
 
     updateStudentData(event){
@@ -27,6 +26,12 @@ class updateStudent extends Component{
         const data= {id: this.props.singleStudentProps.match.params.studentId, currState: this.state}
         this.props.updateStudent(data)
         this.props.updateCurrStudent()
+        this.setState({
+            firstName: '',
+            lastName: '',
+            email: ''
+        })
+        console.log(this.state)
     }
 
     render(){
@@ -34,11 +39,11 @@ class updateStudent extends Component{
             <div>
                 <form onSubmit={this.updateStudentData}>
                     <label>Update Student First Name</label>
-                    <input onChange={this.changeStudentData} name='firstName' type='text'></input>
+                    <input onChange={this.changeStudentData} name='firstName' type='text' value={this.state.firstName}></input>
                     <label>Update Student Last Name</label>
-                    <input onChange={this.changeStudentData} name='lastName' type='text'></input>
+                    <input onChange={this.changeStudentData} name='lastName' type='text' value={this.state.lastName}></input>
                     <label>Update Student Email</label>
-                    <input onChange={this.changeStudentData} name='email' type='text'></input>
+                    <input onChange={this.changeStudentData} name='email' type='text' value={this.state.email}></input>
                     <button>Update Student Info !</button>
                 </form>
             </div>
