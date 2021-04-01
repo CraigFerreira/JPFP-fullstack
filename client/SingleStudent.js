@@ -42,7 +42,6 @@ class SingleStudent extends Component{
     }
 
     render(){
-        console.log('single student render',this.props.singleStudent[0])
         return(
             <div>
                 <h3>Single Student</h3>

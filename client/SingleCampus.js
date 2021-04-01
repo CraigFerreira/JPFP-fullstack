@@ -22,7 +22,8 @@ class SingleCampus extends Component{
         const id=this.props.match.params.campusId
         this.props.getSingleCampusData(id)
     }
-    UnlinkStudent(){
+    UnlinkStudent(studentId){
+        this.props.getSingleCampusData(this.props.match.params.campusId)
     }
 
     renderCampus(){
@@ -46,7 +47,7 @@ class SingleCampus extends Component{
                                         {currCampus.Students.map((currStudent)=>{
                                             return(
                                                 <ul key={currStudent.name} className='campus'>
-                                                    <Unregister updateStudent={this.UnlinkStudent}/>
+                                                    <Unregister campusId={currCampus.id} studentId={currStudent.id} updateStudentList={this.UnlinkStudent}/>
                                                     <h3>Students at {currStudent.name}</h3>
                                                     <li >First Name: {currStudent.firstName}</li>
                                                     <li> Last Name: {currStudent.lastName}</li>

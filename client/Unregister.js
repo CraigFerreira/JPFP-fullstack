@@ -1,9 +1,21 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+import {unlinkStudentFromCampus} from '../src/actions/index'
 import '../src/style.css'
 
 class Unregister extends Component{
+    constructor(){
+        super()
+        this.UnregisterStudent= this.UnregisterStudent.bind(this)
+    }
     UnregisterStudent(){
-        console.log(this.props.update)
+        console.log('unregister props',this.props)
+        const data={
+            campusId:this.props.campusId,
+            studentId: this.props.studentId
+        }
+        this.props.unregisterCurrStudent(data)
+        this.props.updateStudentList()
     }
     render(){
         return(
@@ -14,4 +26,12 @@ class Unregister extends Component{
     }
 }
 
-export default Unregister
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        unregisterCurrStudent: (currStudentData)=>{
+            dispatch(unlinkStudentFromCampus(currStudentData))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Unregister)

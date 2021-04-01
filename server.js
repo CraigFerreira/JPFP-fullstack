@@ -129,3 +129,20 @@ app.put('/api/students/:id', async(req, res)=>{
         console.log(err)
     }
 })
+
+app.put('/api/campus/:id/Unlink', async(req, res)=>{
+    try{
+        console.log('server id unlink', req.params.id, req.body)
+        //find student, remove campus id from student aka set it to null
+        // const student= await Students.findAll({where: {id: req.body.studentId}})
+        // console.log('found student', student)
+        const studentToUnregister= await Students.update({CampusId: null}, {where: {id: req.body.studentId}})
+        const student= await Students.findAll({where: {id: req.body.studentId}})
+        console.log('found student', student)
+        // console.log('student to unlink new',studentToUnregister)
+        res.send(student)
+
+    }catch(err){
+        console.log(err)
+    }
+})

@@ -25,7 +25,6 @@ class updateStudent extends Component{
         event.preventDefault()
         // this.props.updateStudent(this.state)
         const data= {id: this.props.singleStudentProps.match.params.studentId, currState: this.state}
-        console.log('props props', this.props)
         this.props.updateStudent(data)
         this.props.updateCurrStudent()
     }
