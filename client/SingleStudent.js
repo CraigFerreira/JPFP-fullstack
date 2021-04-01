@@ -23,14 +23,14 @@ class SingleStudent extends Component{
     renderStudent(){
         return(
             <div>
-                {this.props.singleStudent.map((currStudent)=>{
+                {this.props.singleStudent.map((currStudent, idx)=>{
                     return( 
-                        <ul className='campus' key={currStudent.firstName +currStudent.lastName}>
+                        <ul className='campus' key={currStudent.firstName +currStudent.lastName+ idx}>
                             <li>First Name: {currStudent.firstName}</li>
                             <li> Last Name: {currStudent.lastName}</li>
                             <li>Email: <a href={currStudent.email}>{currStudent.email}</a></li>
                             <li>GPA: {currStudent.gpa}</li>
-                            <img key={currStudent.firstName +currStudent.lastName} className='img' src={currStudent.imgURL}/>
+                            <img className='img' src={currStudent.imgURL}/>
                             {currStudent.Campus===undefined||currStudent.Campus===null? '':<h3>Student {currStudent.firstName} {currStudent.lastName} studys at {currStudent.Campus.name}</h3>}
                             {currStudent.Campus===undefined||currStudent.Campus===null?'':<NavLink to={`/SingleCampus/${currStudent.Campus.id}`}>{currStudent.Campus.name}</NavLink>} 
                         </ul>

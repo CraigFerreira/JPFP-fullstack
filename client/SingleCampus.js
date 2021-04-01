@@ -34,9 +34,9 @@ class SingleCampus extends Component{
                 </div>
                 <div>
                     
-                        {this.props.campus.map((currCampus)=>{
+                        {this.props.campus.map((currCampus, idx)=>{
                             return(
-                                <ul key={currCampus.name} className='campus'>
+                                <ul key={idx} className='campus'>
                                     <li>{currCampus.name}</li>
                                     <li>{currCampus.address}</li>
                                     {currCampus.Students===undefined?'':<li>Number of Students: {currCampus.Students.length}</li>}
@@ -44,9 +44,9 @@ class SingleCampus extends Component{
                                     <p>{currCampus.description}</p>
                                     {currCampus.Students===undefined? '':
                                     <li>
-                                        {currCampus.Students.map((currStudent)=>{
+                                        {currCampus.Students.map((currStudent, idx)=>{
                                             return(
-                                                <ul key={currStudent.name} className='campus'>
+                                                <ul key={idx} className='campus'>
                                                     <Unregister campusId={currCampus.id} studentId={currStudent.id} updateStudentList={this.UnlinkStudent}/>
                                                     <h3>Students at {currStudent.name}</h3>
                                                     <li >First Name: {currStudent.firstName}</li>
