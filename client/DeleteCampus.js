@@ -10,8 +10,6 @@ class DeleteCampus extends Component{
         this.deleteCampus= this.deleteCampus.bind(this)
     }
     deleteCampus(data){
-        console.log('delete button click',data)
-        console.log('delete campus',data.deleteCampus, 'id', data.props.id)
         data.deleteCampus(data.props.id)
     }
 

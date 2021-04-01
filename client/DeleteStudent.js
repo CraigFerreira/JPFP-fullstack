@@ -11,8 +11,6 @@ class DeleteStudent extends Component{
 
     }
     deleteCurrentStudent(data){
-        console.log('data', data)
-        console.log(data.deleteStudent, data.props)
         data.deleteStudent(data.props.id)
     }
 

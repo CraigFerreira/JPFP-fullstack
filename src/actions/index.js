@@ -45,7 +45,7 @@ export const deleteStudentData= (id)=>{
 export const UpdateCampusData=(currdata)=>{
     return async(dispatch)=>{
         const response= await data.put(`/campus/${currdata.id}`, currdata.currState)
-        dispatch({type: 'UPDATE_STUDENT', payload: response.data})
+        // dispatch({type: 'UPDATE_CAMPUS', payload: response.data})
     }
 }
 
@@ -53,5 +53,19 @@ export const getSingleCampusData= (id)=>{
     return async(dispatch)=>{
         const response= await data.get(`/SingleCampus/${id}`)
         dispatch({type: 'GET_SINGLE_CAMPUS', payload: response.data})
+    }
+}
+
+export const UpdateStudentData=(currdata)=>{
+    return async(dispatch)=>{
+        const response= await data.put(`/student/${currdata.id}`, currdata.currState)
+        // dispatch({type: 'UPDATE_CAMPUS', payload: response.data})
+    }
+}
+
+export const getSingleStudentData= (id)=>{
+    return async(dispatch)=>{
+        const response= await data.get(`/SingleStudent/${id}`)
+        dispatch({type: 'GET_SINGLE_STUDENT', payload: response.data})
     }
 }

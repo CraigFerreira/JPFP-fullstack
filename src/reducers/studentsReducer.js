@@ -11,6 +11,18 @@ export default(state=[], action)=>{
         })
         return [...updatedStudents]
     }
+        // else if(action.type==='UPDATE_STUDENT'){
+    //     console.log('update student data', action.payload)
+    //     let updatedStudent= state.map((currStudent)=>{
+    //         if(currStudent.id===action.payload.id){
+    //             return action.payload
+    //         }
+    //     })
+    //     return updatedCampus
+    // }
+    else if(action.type==='GET_SINGLE_STUDENT'){
+        return action.payload
+    }
 
     else return state
 }

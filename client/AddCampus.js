@@ -18,7 +18,6 @@ class AddCampus extends Component{
         this.setState({
             [event.target.name]: event.target.value
         })
-        console.log(this.state)
     }
 
     async updateCampusData(event){
@@ -32,7 +31,6 @@ class AddCampus extends Component{
     }
 
     render(){
-        console.log('propsprops',this.props)
         return(
             <div>
                 <form className='form' onSubmit={this.updateCampusData}>

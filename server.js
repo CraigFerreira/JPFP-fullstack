@@ -15,7 +15,6 @@ app.use(express.urlencoded({extended: true}))
 app.get('/api/campus', async(req, res)=>{
     try{
         let data= await Campus.findAll({include:{model:Students}})
-        console.log('campus data', data)
         res.send(data)
     }catch(err){
         console.log(err)
@@ -35,7 +34,6 @@ init()
 app.get('/api/students', async(req, res)=>{
     try{
         const data= await Students.findAll({include: {model: Campus}})
-        console.log('students data', data)
         res.send(data)
 
     }catch(err){
@@ -45,10 +43,7 @@ app.get('/api/students', async(req, res)=>{
 
 app.get('/api/SingleCampus/:id', async(req, res)=>{
     try{
-        console.log(req.params.id)
-        // const singleCampus = await Campus.findByPk(req.params.id)
         const singleCampus= await Campus.findAll({where: {id: req.params.id}, include:{model: Students}})
-        console.log('single single',singleCampus)
         res.send(singleCampus)
 
     }catch(err){
@@ -68,7 +63,6 @@ app.get('/api/SingleStudent/:id', async(req, res)=>{
 
 app.post('/api/campus', async(req, res)=>{
     try{
-        console.log('add campus state', req.body)
         const newCampus=await Campus.create({
             name: req.body.campusName,
             address: req.body.campusAddress,
@@ -81,7 +75,6 @@ app.post('/api/campus', async(req, res)=>{
 
 app.post('/api/students', async(req, res)=>{
     try{
-        console.log('add student state', req.body)
         const newStudent=await Students.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -96,7 +89,6 @@ app.post('/api/students', async(req, res)=>{
 
 app.delete('/api/campus/:id', async(req, res)=>{
     try{
-        console.log('server delete campus', req.params.id)
         await Campus.destroy({where:{id: req.params.id}})
         const updatedCampus= await Campus.findAll()
         res.send(updatedCampus)
@@ -107,7 +99,6 @@ app.delete('/api/campus/:id', async(req, res)=>{
 
 app.delete('/api/students/:id', async(req, res)=>{
     try{
-        console.log('server delete student', req.params.id)
         await Students.destroy({where:{id: req.params.id}})
         const updatedStudents= await Students.findAll()
         res.send(updatedStudents)
@@ -119,11 +110,21 @@ app.delete('/api/students/:id', async(req, res)=>{
 
 app.put('/api/campus/:id', async(req, res)=>{
     try{
-        console.log('campus id of campus to update', req.params.id)
-        console.log('campus data to change to', req.body)
         const updateCurrCampus=await Campus.update({name: req.body.campusName, address: req.body.campusAddress},{where:{id: req.params.id}})
         const newCampusList= await Campus.findAll()
         res.send(newCampusList)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+app.put('/api/students/:id', async(req, res)=>{
+    try{
+        // console.log('student id of campus to update', req.params.id)
+        // console.log('student data to change to', req.body)
+        const updateStudent=await Students.update({firstName: req.body.firstName, lastName: req.body.lastName, email: req.body.email},{where:{id: req.params.id}})
+        const newStudentList= await Students.findAll()
+        res.send(newStudentList)
     }catch(err){
         console.log(err)
     }

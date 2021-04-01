@@ -15,7 +15,6 @@ import thunk from 'redux-thunk'
 
 class App extends Component{
     render(){
-        console.log('main',this.props)
         return(
             <HashRouter>
                 <div>

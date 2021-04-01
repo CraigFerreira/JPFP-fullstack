@@ -5,28 +5,27 @@ import {getSingleCampusData} from '../src/actions'
 import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import UpdateCampus from './UpdateCampus'
+import Unregister from './Unregister'
 
 class SingleCampus extends Component{
     constructor(props){
         super(props)
         this.renderCampus= this.renderCampus.bind(this)
         this.UpdateCampusData= this.UpdateCampusData.bind(this)
+        this.UnlinkStudent= this.UnlinkStudent.bind(this)
     }
     async componentDidMount(){  
-        console.log(this.props)
         const id=this.props.match.params.campusId
-        console.log('single campus id',id)
         this.props.getSingleCampusData(id)
-        console.log(this.props)
     }
     UpdateCampusData(){
         const id=this.props.match.params.campusId
         this.props.getSingleCampusData(id)
-        console.log('upadated data', this.props)
+    }
+    UnlinkStudent(){
     }
 
     renderCampus(){
-        console.log('single campus data', this.props)
         return(
             <div>
                 <div className='form'>
@@ -39,13 +38,15 @@ class SingleCampus extends Component{
                                 <ul key={currCampus.name} className='campus'>
                                     <li>{currCampus.name}</li>
                                     <li>{currCampus.address}</li>
-                                    <li>Number of Students: {currCampus.Students.length}</li>
+                                    {currCampus.Students===undefined?'':<li>Number of Students: {currCampus.Students.length}</li>}
                                     <img className='img' src={currCampus.imgURL}/>
                                     <p>{currCampus.description}</p>
+                                    {currCampus.Students===undefined? '':
                                     <li>
                                         {currCampus.Students.map((currStudent)=>{
                                             return(
                                                 <ul key={currStudent.name} className='campus'>
+                                                    <Unregister updateStudent={this.UnlinkStudent}/>
                                                     <h3>Students at {currStudent.name}</h3>
                                                     <li >First Name: {currStudent.firstName}</li>
                                                     <li> Last Name: {currStudent.lastName}</li>
@@ -58,6 +59,7 @@ class SingleCampus extends Component{
                                             )
                                         })}
                                     </li>
+                                    }
                                 </ul>
                                 
                             )

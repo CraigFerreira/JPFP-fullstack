@@ -19,7 +19,6 @@ class AllCampus extends Component{
     }  
 
     renderCampusData(){
-        console.log('campus data',this.props)
         return(
             <div>
                { 
@@ -29,7 +28,6 @@ class AllCampus extends Component{
                             <ul className='campus' key={curr.name}>
                                 <li>Campus Name: {curr.name}</li>
                                 {curr.Students===undefined?<li>Number of Sudents: 0</li> :<li>Number of Sudents: {curr.Students.length}</li>  } 
-                                {console.log('curr student length',curr.Students)}
                                 <li>Address: {curr.address}</li>
                                  <DeleteCampus props={curr}/>
                                 <img className='img' src={curr.imgURL}/>
